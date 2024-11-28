@@ -3,7 +3,6 @@
 -- ============================ --
 
 -- Filetype settings and compatibility
-vim.opt.filetype = 'colortemplate'            -- Set default filetype for color templates
 vim.opt.compatible = false                    -- Disable compatibility with `vi` for full Neovim features
 vim.opt.termguicolors = true                  -- Enable true color support in the terminal
 vim.opt.clipboard = 'unnamedplus'             -- Use system clipboard for copy-paste operations
@@ -33,14 +32,14 @@ vim.opt.relativenumber = true                 -- Show relative line numbers
 vim.opt.number = true                         -- Display absolute line numbers
 vim.opt.signcolumn = 'yes'                    -- Always display the sign column
 vim.opt.wrap = false                          -- Disable line wrapping (long lines will overflow)
-vim.opt.scrolloff = 8                         -- Keep 8 lines visible above and below the cursor
-vim.opt.sidescrolloff = 8                     -- Keep 8 columns visible to the left and right of the cursor
+vim.opt.scrolloff = 10                        -- Keep 8 lines visible above and below the cursor
+vim.opt.sidescrolloff = 10                    -- Keep 8 columns visible to the left and right of the cursor
 vim.opt.winfixheight = true                   -- Prevent window height from changing
 vim.opt.winfixwidth = true                    -- Prevent window width from changing
 
 -- Font and title settings
 -- vim.opt.guifont = 'Iosevka:h20'               -- Set font for GUI (use appropriate font)
--- vim.opt.title = false                         -- Do not set the terminal title
+vim.opt.title = true                         -- Do not set the terminal title
 -- vim.opt.guitablabel = '%t'                    -- Show only file name in tab label
 
 -- ============================ --
@@ -145,13 +144,14 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
-
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim with plugins
 require("lazy").setup({
   spec = {
-    "shortcuts/no-neck-pain.nvim", -- Plugin for tiling window management
+    "shortcuts/no-neck-pain.nvim",
     {
-      "blazkowolf/gruber-darker.nvim", -- Colorscheme
+      "blazkowolf/gruber-darker.nvim",
       opts = {
         bold = true,
         italic = {
@@ -160,6 +160,7 @@ require("lazy").setup({
       },
     }
   },
+  install = { colorscheme = { "gruber-darker" } },
   checker = { enabled = false },
 })
 
