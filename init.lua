@@ -15,7 +15,7 @@ vim.opt.writebackup = false                   -- Prevent editing files if alread
 -- Buffer and window settings
 vim.opt.hidden = false                        -- Do not allow hidden buffers; must save current file to switch
 vim.opt.mouse = 'a'                           -- Enable mouse support in all modes
-vim.opt.cmdheight = 1                         -- Use one line for the command-line area
+vim.opt.cmdheight = 2                         -- Use one line for the command-line area
 vim.opt.laststatus = 2                        -- Always show the status line
 vim.opt.showmode = true                       -- Show mode (e.g., INSERT, NORMAL)
 vim.opt.showcmd = true                        -- Show command input in the command line
@@ -36,6 +36,11 @@ vim.opt.scrolloff = 10                        -- Keep 8 lines visible above and 
 vim.opt.sidescrolloff = 10                    -- Keep 8 columns visible to the left and right of the cursor
 vim.opt.winfixheight = true                   -- Prevent window height from changing
 vim.opt.winfixwidth = true                    -- Prevent window width from changing
+
+-- Rust
+vim.g.rustfmt_autosave_if_config_present = 1
+vim.g.rustfmt_autosave = 1
+vim.g.rustfmt_command = 'rustfmt'
 
 -- Font and title settings
 -- vim.opt.guifont = 'Iosevka:h20'               -- Set font for GUI (use appropriate font)
@@ -71,9 +76,9 @@ vim.api.nvim_set_keymap('n', '<C-s>', ':lua FormatAndSave()<CR>:w<CR>', { norema
 vim.cmd [[
     set autoindent
     set expandtab
-    set shiftwidth=8
-    set softtabstop=8
-    set tabstop=8
+    set shiftwidth=4
+    set softtabstop=4
+    set tabstop=4
     set smartindent
 ]]
 
@@ -149,7 +154,8 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim with plugins
 require("lazy").setup({
   spec = {
-    "shortcuts/no-neck-pain.nvim",
+    "rust-lang/rust.vim",
+    --"shortcuts/no-neck-pain.nvim",
     {
       "blazkowolf/gruber-darker.nvim",
       opts = {
@@ -176,10 +182,10 @@ vim.cmd([[
 ]])
 
 -- Activate NoNeckPain (plugin) on VimEnter
-vim.api.nvim_create_autocmd("VimEnter", {
-  pattern = "*",
-  command = "NoNeckPain",
-})
+--vim.api.nvim_create_autocmd("VimEnter", {
+--  pattern = "*",
+--  command = "NoNeckPain",
+--})
 
 -- ============================ --
 --    MISCELLANEOUS MAPPINGS     --
